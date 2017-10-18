@@ -5,6 +5,12 @@ data= {}
 number = '12345'
 
 for i in range(100):
+	''' 
+	if you connect to the network in proxy server, add the following process.
+	proxy = urllib2.ProxyHandler({'http': 'http://username:pwd@ip:port'})
+	opener = urllib2.build_opener(proxy)
+	urllib2.install_opener(opener)
+	'''
 	data['nothing'] = number
 	url_values = urllib.urlencode(data)
 	url = 'http://www.pythonchallenge.com/pc/def/linkedlist.php'
@@ -18,8 +24,9 @@ for i in range(100):
 	print page
 	page = page.split(" ")
 	
-	number = [i for i in page if i.isdigit()][0]
+	number_list = [i for i in page if i.isdigit()]
 	foo.close()
-	if number is "":
-		print "the content of page is not number."
+	if number_list == []:
+		print "There is not number in the content of page."
 		break
+	number = number_list[0]
